@@ -1,0 +1,16 @@
+.container {
+  padding: 10px;
+  display: flex;
+  background-color: #20252a;
+  gap: 20px;
+}
+
+.searchInput {
+  flex: 1;
+  padding: 10px;
+  border: none;
+}
+
+.select {
+  min-width: 80px;
+}

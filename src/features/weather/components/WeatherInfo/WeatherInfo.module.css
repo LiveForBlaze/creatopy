@@ -1,0 +1,9 @@
+.container {
+  padding: 30px;
+  background-color: #fbbe18;
+}
+
+.reflection {
+  height: 30px;
+  background: linear-gradient(180deg, rgba(251,190,24,0.3) 0%, rgba(251,190,24,0) 100%);
+}
