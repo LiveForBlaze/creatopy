@@ -1,5 +1,5 @@
 import { getWeather } from '../../weatherSlice';
-import { useAppDispatch } from 'app/hooks';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { useEffect } from 'react';
 
 import useDebounce from 'lib/hooks/useDebounce';
@@ -11,13 +11,22 @@ type Units = 'metric' | 'imperial' | 'kelvin';
 
 export const Search: React.FC = () => {
   const dispatch = useAppDispatch();
+  const cityFound = useAppSelector((state) => state.weather.data?.getCityByName);
   const [cityName, setCityName] = useState<string>('');
-  const devouncedCityName = useDebounce(cityName);
+  const debouncedCityName = useDebounce(cityName);
   const [units, setUnits] = useState<Units>('metric');
   
   useEffect(() => {
-    dispatch(getWeather({ name: devouncedCityName, units }));
-  }, [devouncedCityName, units]);
+    dispatch(getWeather({ name: debouncedCityName, units }));
+    // eslint-disable-next-line
+  }, [debouncedCityName]);
+
+  useEffect(() => {
+    if(cityFound) {
+      dispatch(getWeather({ name: debouncedCityName, units }));
+    }
+    // eslint-disable-next-line
+  }, [units]);
 
   return (
     <div className={styles.container}>
