@@ -5,7 +5,7 @@ export const Info: React.FC = () => {
   const data = useAppSelector((state) => state.weather.data?.getCityByName);
 
   if (!data) {
-    return <div>No data...</div>
+    return <h1>No data...</h1>
   }
 
   return (

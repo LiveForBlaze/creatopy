@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { graphqlAPI } from '../../app/graphql';
+import { graphqlAPI } from 'app/graphql';
 import { getWeatherQuery } from './queries/getWeatherQuery';
 import { GetWeatherData } from './models/getWeather';
 
@@ -21,7 +21,9 @@ interface graphqlAPIVariables {
 }
 
 export const getWeather = createAsyncThunk("weather/getWeather", async (args: GetWeatherProps) => {
-  const response = await graphqlAPI<string, graphqlAPIVariables>(getWeatherQuery, { name: args?.name, config: { units: args?.units } })
+  const response = await graphqlAPI<string, graphqlAPIVariables>(
+    getWeatherQuery, { name: args?.name, config: { units: args?.units } }
+  );
   return await response.json();
   }
 );
